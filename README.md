@@ -1,4 +1,4 @@
-# DEMS
+# Aksara AI Backend
 
 ## Description
 
