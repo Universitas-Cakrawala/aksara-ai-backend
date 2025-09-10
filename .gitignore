@@ -1,0 +1,11 @@
+.env
+sandbox/
+.venv/
+sandbox-2/
+__pycache__/
+*.pyc
+.ipynb_checkpoints
+.DS_Store
+.vscode/
+.idea/
+*.log
