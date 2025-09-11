@@ -41,6 +41,23 @@ Ensure you have the following software installed on your local machine:
     pip install -r requirements.txt
     ```
 
+5. **Set up the database**
+
+    Configure your PostgreSQL database connection in `.env`:
+    ```env
+    DATABASE_CONN=postgresql://username:password@localhost:5432/database_name
+    ```
+
+6. **Run database migrations**
+
+    ```sh
+    # Apply migrations
+    make migrate-up
+    
+    # Seed database with initial data
+    make seed
+    ```
+
 ### Running the Project
 
 1. **Run the application using Uvicorn**
@@ -59,6 +76,78 @@ Ensure you have the following software installed on your local machine:
 
 - Once the server is running, you can access the API documentation at:
   - OpenAPI: [Swagger Documentation](http://127.0.0.1:8000/docs)
+
+### Default Credentials
+
+After seeding the database, you can use these default credentials:
+- **Username**: admin
+- **Password**: admin123
+- **Email**: admin@aksara.ai
+
+## Database Migration
+
+This project uses Alembic for database migrations. See [MIGRATION.md](MIGRATION.md) for detailed documentation.
+
+### Quick Migration Commands
+
+```sh
+# Create new migration
+make migrate-create MSG="Description of changes"
+
+# Apply migrations
+make migrate-up
+
+# Rollback migration
+make migrate-down REV=revision_id
+
+# Check current status
+make migrate-current
+
+# Seed database
+make seed
+```
+
+## Available Make Commands
+
+```sh
+# Setup (install + migrate + seed)
+make setup
+
+# Development
+make dev              # Start development server
+make install          # Install dependencies
+make clean            # Clean cache files
+
+# Database
+make migrate-up       # Apply migrations
+make migrate-down     # Rollback migration  
+make migrate-create   # Create new migration
+make seed             # Seed database
+
+# Docker
+make docker-up        # Start with Docker
+make docker-down      # Stop Docker containers
+```
+
+## Project Structure
+
+```
+aksara-ai-backend/
+├── migrations/           # Database migrations
+├── src/
+│   ├── auth/            # Authentication logic
+│   ├── config/          # Database and app configuration
+│   ├── health/          # Health check endpoints
+│   ├── middleware/      # Custom middlewares
+│   ├── refresh_token/   # JWT refresh token management
+│   ├── user/            # User management
+│   └── utils/           # Utility functions
+├── main.py              # FastAPI application entry point
+├── migrate.py           # Migration management script
+├── seed.py              # Database seeding script
+├── Makefile            # Development commands
+└── requirements.txt     # Python dependencies
+```
 
 ## Contributing
 

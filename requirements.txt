@@ -8,6 +8,7 @@ sqlalchemy==2.0.40
 sqlmodel==0.0.16
 psycopg2-binary==2.9.10
 pymongo==4.10.1
+alembic==1.13.2
 
 # Data validation and settings
 pydantic==2.9.2

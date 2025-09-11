@@ -24,7 +24,6 @@ class UserProfile(SQLModel, table=True):
         default_factory=lambda: str(uuid.uuid4()), primary_key=True, index=True
     )
     id_user: str = Field(foreign_key="user.id", unique=True)
-    id_satker: str = Field(foreign_key="satker.id")
     nama_lengkap: str
     email: str
     tipe_akun: str

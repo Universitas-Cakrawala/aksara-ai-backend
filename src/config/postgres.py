@@ -3,6 +3,7 @@ from sqlalchemy import event
 from sqlalchemy.engine import Engine
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlmodel import SQLModel
 import logging
 
 # Konfigurasi logging
@@ -45,7 +46,8 @@ def get_db():
 def init_db():
     """Inisialisasi database."""
     logger.debug("Connect to DB ....")
-    Base.metadata.create_all(bind=engine)
+    # Menggunakan SQLModel.metadata.create_all untuk compatibility dengan Alembic
+    SQLModel.metadata.create_all(bind=engine)
 
 
 # Inisialisasi database saat modul diimpor
